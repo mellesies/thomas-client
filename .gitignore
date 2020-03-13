@@ -1,2 +1,4 @@
 *.egg-info
 *.sublime-project
+build
+dist

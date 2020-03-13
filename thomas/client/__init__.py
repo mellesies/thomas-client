@@ -133,7 +133,7 @@ class Client(object):
         self._access_token = response.json()["_access_token"]
 
     def get_network(self, id_=None):
-        """Return a list of networks form the server."""
+        """Return a (list of) network(s) form the server."""
         if id_:
             result = self.request(f'network/{id_}')
             return BayesianNetwork.from_dict(result['json'])
