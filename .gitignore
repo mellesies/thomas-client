@@ -2,3 +2,4 @@
 *.sublime-project
 build
 dist
+logs

@@ -3,13 +3,19 @@ FROM mellesies/thomas-core:latest
 
 LABEL maintainer="Melle Sieswerda <m.sieswerda@iknl.nl>"
 
+
 # Copy package
 COPY . /usr/local/python/thomas-client/
 
+# Copy Jupyter settings
+COPY lab-settings /root/.jupyter/lab/
+
 WORKDIR /usr/local/python/
 
-RUN pip install ./thomas-client
-# RUN cp thomas-client/notebooks/* thomas-core/notebooks
+RUN pip install thomas-jupyter-widget
+RUN jupyter labextension install --minimize=False thomas-jupyter-widget
+RUN pip install -e ./thomas-client
+RUN cp thomas-client/notebooks/6.\ Using\ the\ server.ipynb thomas-core/notebooks
 
 # JupyterLab runs on port 8888
 EXPOSE 8888
